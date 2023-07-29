@@ -1,0 +1,19 @@
+<div class="container bg-secondary-subtle">
+    <span class="border border-primary-subtle">
+
+        <h1 class="text-center shadow-lg p-3 mb-5 bg-body-tertiary rounded bg-success  ">Todo List by Chayan</h1>
+    </span>
+
+    <app-add-todo (todoAdd)="addTodo($event)"></app-add-todo>
+
+    <h3 class="text-center shadow p-3 mb-5 bg-body-tertiary rounded"> My Todos</h3>
+
+    <div *ngIf="this.todos.length===0; else elseBlock">No Todos to Display</div>
+    <ng-template #elseBlock>
+
+        <div *ngFor="let todo of todos; index as i">
+            <app-todo-item [todo]="todo" [i]="i" (todoDelete)="deleteTodo($event)"
+                (todoCheckbox)="toggleTodo($event)"></app-todo-item>
+        </div>
+    </ng-template>
+</div>
